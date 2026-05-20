@@ -57,11 +57,15 @@ def maybe_generate_image(post_data, base_name):
     if not image_prompt:
         return None
 
-    gemini = GeminiClient()
-    image_bytes = gemini.generate_image(image_prompt)
-
     filename = f"{base_name}.png"
     out_path = MEDIA_DIR / filename
+
+    if out_path.exists() and out_path.stat().st_size > 0:
+        print(f"[image] reusing existing {out_path}")
+        return f"{REPO_RAW_BASE}/media/{filename}"
+
+    gemini = GeminiClient()
+    image_bytes = gemini.generate_image(image_prompt)
     out_path.write_bytes(image_bytes)
     print(f"[image] saved to {out_path}")
 

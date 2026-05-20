@@ -1,0 +1,25 @@
+publish_at: '2026-05-26T11:00:00+05:00'
+topic: marketing-dashboard
+image_prompt: >-
+  Minimalist 3D illustration on dark navy background: five thin colored data
+  streams in soft teal, purple, orange, blue and pink flowing from five small
+  geometric source nodes on the left, merging into a single clean unified
+  glowing dashboard panel on the right. Dashboard has subtle bar charts and
+  line graphs without numbers. Soft gradient lighting, editorial style. No
+  text, no people, no brand names. Vertical 4:5 composition.
+thread:
+  - text: |-
+      каждое утро понедельника убивал час на сбор маркетинг статы. фб,
+      тикток, гугл - кабинеты по очереди. потом appsflyer, posthog, наша
+      админка. в эксель скопировал, формулами посчитал, графики обновил.
+      и только после этого начинал нормальную работу
+  - text: |-
+      в какой-то момент задолбало. сел сделалл свой дашборд который сам
+      всё тянет каждое утро в 6 утра. 11 вкладок: реклама, установки,
+      ретеншн, gpt, воронка, креативы и тд. подтягивает из 5 систем по
+      апи. ничего сложного вообще, python + cron + html
+  - text: |-
+      фишка не в том что я сэкономил час. фишка в том что теперь смотрю
+      в дашборд каждый день а не раз в неделю. вижу утром что креатив
+      сдулся - отключаю к обеду. раньше крутил неделю впустую и видел
+      только в воскресенье когда сводил всё руками
