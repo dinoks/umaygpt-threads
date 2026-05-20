@@ -14,6 +14,7 @@ import sys
 import time
 import yaml
 import shutil
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -64,7 +65,20 @@ def maybe_generate_image(post_data, base_name):
     out_path.write_bytes(image_bytes)
     print(f"[image] saved to {out_path}")
 
-    # raw URL после коммита GitHub Action сразу станет доступен
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
+        subprocess.run(
+            ["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"],
+            check=True,
+        )
+        subprocess.run(["git", "add", str(out_path)], check=True)
+        diff = subprocess.run(["git", "diff", "--cached", "--quiet"])
+        if diff.returncode != 0:
+            subprocess.run(["git", "commit", "-m", f"auto: add image for {base_name}"], check=True)
+            subprocess.run(["git", "push"], check=True)
+            print(f"[image] pushed to repo, waiting for CDN")
+            time.sleep(20)
+
     return f"{REPO_RAW_BASE}/media/{filename}"
 
 
