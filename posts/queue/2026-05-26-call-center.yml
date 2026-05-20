@@ -1,0 +1,29 @@
+publish_at: '2026-05-26T11:00:00+05:00'
+topic: call-center-transcription
+image_prompt: >-
+  Minimalist 3D illustration on dark navy background: stylized microphone on
+  the left transforming into sound waves that flow into a clean dashboard with
+  bar charts and line graphs on the right. Soft purple and teal gradient
+  lighting, glowing accents, no text, no people, no brand names. Vertical 4:5
+  composition, modern editorial illustration style.
+thread:
+  - text: |-
+      навайбкодил штуку которая транскрибирует все звонки нашего колл центра и
+      разбирает каждый разговор по косточкам
+
+      мы наняли кц обзванивать клиентскую базу, и без анализа эти разговоры
+      просто в пустоту улетают. оператор сказал, клиент послушал, дальше непонятно
+  - text: |-
+      схема такая: грузится аудио, llm транскрибирует и разбирает разговор по
+      этапам. где оператор слил клиента, где не дожал, где скрипт не сработал,
+      какие возражения вылезли
+
+      всё это улетает в дашборд где видна полная картина по дням и операторам
+  - text: |-
+      теперь вижу прям точечно: вот тут пробел в скрипте, тут ребят надо
+      доучить, вот это возражение чаще всего и закрывают его плохо
+
+      самое кайфовое что не нужно руками слушать сотни записей. система сама
+      вытаскивает инсайты и говорит куда смотреть
+
+      если интересно как сделано, расскажу подробнее

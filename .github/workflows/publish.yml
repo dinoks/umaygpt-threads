@@ -1,0 +1,46 @@
+name: Publish Threads posts
+
+on:
+  schedule:
+    # 11:00 Алматы (UTC+5) = 06:00 UTC, вторник/среда/четверг
+    - cron: '0 6 * * 2,3,4'
+  # Можно запустить руками если хочется проверить
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run publisher
+        env:
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          REPO_RAW_BASE: https://raw.githubusercontent.com/${{ github.repository }}/main
+        run: python scripts/post_to_threads.py
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add posts/ media/ || true
+          if git diff --staged --quiet; then
+            echo "Нет изменений"
+          else
+            git commit -m "auto: publish threads $(date -u +%Y-%m-%d)"
+            git push
+          fi

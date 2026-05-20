@@ -1,0 +1,28 @@
+publish_at: '2026-05-28T11:00:00+05:00'
+topic: hexagon-creative-scoring
+image_prompt: >-
+  Minimalist editorial illustration on dark navy background: a glowing hexagon
+  with six radial scoring axes, each axis labeled with abstract icons (no
+  readable text). Three of the axes are filled to different lengths showing a
+  radar chart shape inside the hexagon. Soft purple-to-teal gradient glow,
+  modern technical aesthetic. No people, no brands. Vertical 4:5 composition.
+thread:
+  - text: |-
+      показываю проект который собрал для своей команды, называется Шестигранник.
+      хочу собрать обратку
+
+      это система которая оценивает видео креативы и сценарии для рекламы по 6
+      параметрам от 0 до 10. на выходе шестигранник где сразу видно где креатив
+      проседает
+  - text: |-
+      параметры такие: хук в первые 3 секунды, утп, cta, попадание в цу,
+      визуальный ритм, эмоциональный триггер
+
+      загружаешь ролик или сценарий, система прогоняет, выдаёт оценки и текстовые
+      комменты по каждому пункту. где докрутить, что переделать
+  - text: |-
+      сделал чтобы не запускать слабые ролики в прод, экономит бюджет и нервы
+      команды
+
+      ребят кто работает с креативами и таргетом, как вам сам подход? каких
+      параметров не хватает на ваш взгляд? может что-то лишнее
