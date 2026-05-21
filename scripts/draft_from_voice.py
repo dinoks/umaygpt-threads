@@ -32,12 +32,12 @@ QUEUE_DIR = Path(__file__).resolve().parent.parent / "posts" / "queue"
 ALMATY = ZoneInfo("Asia/Almaty")
 SLOT_HOUR = 11
 SLOT_MINUTE = 0
-# 1=Tue, 2=Wed, 3=Thu (Python weekday: Mon=0)
-SLOT_WEEKDAYS = {1, 2, 3}
+# 1=Tue, 3=Thu, 5=Sat (Python weekday: Mon=0)
+SLOT_WEEKDAYS = {1, 3, 5}
 
 
 def next_slot(from_dt=None):
-    """Возвращает ближайший слот Вт/Ср/Чт 11:00 Алматы после from_dt."""
+    """Возвращает ближайший слот Вт/Чт/Сб 11:00 Алматы после from_dt."""
     if from_dt is None:
         from_dt = datetime.now(ALMATY)
 
