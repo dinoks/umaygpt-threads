@@ -1,0 +1,24 @@
+# DRAFT — не лежит в queue, не публикуется автоматом.
+# Чтобы выкатить — перенести в posts/queue/ и проставить publish_at.
+# Картинка: media/2026-05-25-umay-premium.png (сгенерирована, готова)
+topic: umay-premium
+image_prompt: >-
+  Minimalist 3D illustration on dark navy background: small premium gift box
+  with a subtle thin golden ribbon glowing softly, hovering next to a stylized
+  geometric smartphone outline with a single warm light source. Soft
+  champagne-gold and muted teal accents, glowing edges. No text, no brand
+  logos, no people. Editorial product photography style. Vertical 4:5.
+thread:
+  - text: |-
+      думал как расширить ассортимент в умае. в кз люди регулярно заказывают
+      премиум-косметику, парфюм, брендовые вещи через посредников.
+      переплачивают, ждут месяц, не понимают что приходит и можно ли вернуть
+  - text: |-
+      хочу запустить отдельную витрину umay premium внутри приложения.
+      международная косметика, шоколад, парфюм, всё что обычно тащат из
+      дьюти. цены сразу в тенге, оплата как обычно в умае, доставка домой
+      7-14 дней. на старте 50-200 sku руками отобранных
+  - text: |-
+      ребят кто заказывал косметику или премиум-товары через посредников -
+      сколько в среднем переплачиваете и сколько ждёте? хочу понять реальный
+      сценарий до того как запускать
