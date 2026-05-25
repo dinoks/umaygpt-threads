@@ -81,4 +81,33 @@
 - Вариант 2 — нарративный / "история" (с чего началось, как пришёл к этому)
 - Вариант 3 — провокационный / противоположный (вопрос, антипример, спор с очевидным)
 
-image_prompt опционален. Добавляй его если визуал реально усилит пост (схема, дашборд, скетч продукта). Не нужен для чисто текстовых дискуссий и вопросов.
+image_prompt опционален. Добавляй его если визуал реально усилит пост
+(дашборд, продукт, рабочее место, артефакт работы). Не нужен для чисто
+текстовых дискуссий и вопросов.
+
+**КАК ПИСАТЬ image_prompt** (правила в `prompts/image_style.md`):
+
+Главное правило — снимай результат как продукт, не идею через метафору.
+Если пост про дашборд — показывай ноутбук с реальным дашбордом на экране,
+не "потоки данных в виде линий". Если про коробку премиум-товаров —
+product shot как у Apple/Nike, не "иллюстрация подарка".
+
+Шаблон prompt'а (Claude должен следовать ему):
+
+```
+Photoreal product shot: [конкретный объект с материалом, например
+"matte black 14-inch laptop"] on [конкретная поверхность, например
+"dark walnut desk"], [что на нём / контекст — например "screen displays
+clean dark-mode dashboard with bar charts and KPI tiles in teal"].
+[Освещение — например "warm key light from upper-left, cool rim from
+back-right, soft shadow on desk"]. Background: [конкретный фон с blur,
+например "deep indigo wall with bokeh"]. Palette: [3 цвета максимум,
+например "deep navy, teal, warm white"]. Vertical 4:5.
+```
+
+НЕ ПИШИ: "abstract", "geometric shapes", "data flow", "minimalist
+illustration", "transforms into", "neural network", "futuristic",
+"holographic". Это AI-stock триггеры — Gemini рендерит дёшево.
+
+ПИШИ: конкретный объект + материал + поверхность + освещение + 3-цветная
+палитра + сцена. См. полные шаблоны в `prompts/image_style.md`.

@@ -1,63 +1,138 @@
 # Визуальный стиль картинок к постам
 
-Этот файл — референс для написания image_prompt. Не используется напрямую кодом, но Claude должен ориентироваться на него когда генерит image_prompt в варианте поста.
+Этот файл — референс для написания image_prompt. Используется Claude когда
+он генерит image_prompt для нового поста. Цель: картинка должна показывать
+СУТЬ РЕЗУЛЬТАТА работы, а не быть абстрактным символом.
 
-## Базовые правила
+## Главный принцип
 
-- **Vertical 4:5** — оптимальная пропорция для feed Threads (1080x1350)
-- **Тёмный фон** — соответствует визуальному стилю UmayGPT и не слепит в ленте
-- **Без людей** — генерация людей часто выходит криво и съедает аутентичность
-- **Без названий брендов и реальных лого** — Gemini часто рендерит коряво и это палится
-- **Без текста на картинке** — кроме случаев когда это часть концепта (схема, dashboard mockup)
+**Снимай результат как продукт, а не идею через метафору.**
 
-## Стили которые работают
+Если пост про дашборд — покажи реальный экран дашборда (или его натурный мокап
+на ноутбуке/телефоне). Если про call-аналитику — покажи интерфейс с волной
+звука и метриками. Если про премиум-товары — покажи коробку как из product
+photography. Не лепи "поток данных в виде цветных линий" или "микрофон
+переходящий в график". Это AI-stock.
 
-### 1. Минималистичная 3D иллюстрация
-```
-Minimalist 3D illustration on dark navy background, abstract geometric shapes,
-soft gradient lighting, modern professional aesthetic, vertical 4:5 composition,
-no text, no people, subtle glow effects
-```
+Картинка должна отвечать на вопрос «что у Султана на экране сейчас стоит»,
+а не «что бы могло быть метафорой темы».
 
-### 2. Дашборд / интерфейс-мокап
-```
-UI dashboard mockup on dark background, clean modern interface with data charts,
-graph visualization, soft purple and teal accents, no real brand names,
-vertical 4:5 layout, minimalist design
-```
+## Базовый формат
 
-### 3. Схема процесса (флоу)
-```
-Diagram flow chart on dark background, connected nodes with arrows,
-abstract icons representing process steps, soft gradient line connections,
-minimalist technical illustration, vertical 4:5, no labels or text
-```
+- **Vertical 4:5** (1080×1350) для основного формата
+- **Реалистичный 3D render или photoreal product shot** — не "illustration", не "concept art"
+- **Глубина кадра** — главный объект в фокусе, фон с soft bokeh / depth of field
+- **Рим-свет** (rim light) и мягкие тени — даёт объём и кинематографичность
+- **Один герой кадра** — не пять объектов в композиции. Один главный, остальное контекст
 
-### 4. Концепт-арт продукта
+## Что должно быть в любом промпте
+
+Стандартный технический хвост (вшит в gemini_client.py — повторять в prompt не надо):
+
 ```
-Concept art of abstract tech product on dark gradient background,
-soft volumetric lighting, modern industrial design aesthetic,
-deep purple to blue color palette, vertical 4:5, photorealistic render
+photoreal 3D render, octane / cinema 4d quality, cinematic lighting, rim light,
+soft directional shadows, depth of field, shallow focus, vertical 4:5
+composition, product photography aesthetic
 ```
 
-### 5. Метафорическая визуализация
+В сам prompt пиши **что снимаем + материалы + освещение + палитра + сцена**.
+
+## Шаблоны по типам постов
+
+### A. Пост про софт / интерфейс / дашборд / приложение
+Снимаем экран продукта в реалистичном контексте, не абстракцию.
+
 ```
-Abstract metaphorical visualization: [метафора - микрофон + волны для аудио,
-шестигранник для оценки, нейронная сеть для AI], dark moody background,
-glowing accents, minimalist editorial illustration style, vertical 4:5
+Photoreal product shot: matte black 14-inch laptop angled three-quarter view on
+a dark walnut desk, screen displays a clean dark-mode dashboard with crisp data
+visualizations (bar charts, line graphs, KPI tiles in teal and warm white,
+sample numbers blurred). Single warm lamp from upper-left, rim light catches
+laptop edge, soft shadow on desk. Background: blurred home office with deep
+indigo wall, out of focus. Vertical 4:5.
 ```
 
-## Цветовая палитра по умолчанию
+Альтернатива — экран телефона в руке (но без лица), либо плавающий экран без
+устройства (как Apple keynote slide), без логотипа на корпусе.
 
-- Основа: глубокий тёмно-синий / navy (#0a0e27, #1a1f3a)
-- Акценты: фиолетовый (#7c3aed), бирюзовый (#06b6d4), мягкий пурпурный (#a855f7)
-- Подсветка: тёплый янтарный (#f59e0b) для редких акцентов
+### B. Пост про физический продукт / коробку / товар
+Чистый product shot как у premium бренда.
 
-## Чего избегать
+```
+Photoreal product photography: single matte champagne-gold gift box sitting on
+brushed concrete surface, soft satin ribbon catching light, fine paper texture
+visible. Hard rim light from back-left creating sharp highlight, soft fill from
+front. Background gradient from deep charcoal at top to warm umber at bottom,
+shallow depth of field. Editorial commercial style, vertical 4:5.
+```
 
-- Стоковые фото-выглядящие изображения
-- Иллюстрации с плоскими градиентами без объёма
-- Картинки с очевидным AI-look (искажённые пальцы, странные глаза)
-- Яркие пёстрые цвета — выглядят дёшево
-- Корпоративный clipart-look
-- Тексты-плакаты ("AI revolution", "Future is here") — это палится моментально
+### C. Пост про процесс / систему / автоматизацию
+Покажи рабочее место или артефакт работы, не "блок-схему со стрелками".
+
+```
+Photoreal overhead shot of a developer workspace: matte mechanical keyboard,
+open notebook with handwritten flow diagram (lines abstract, not readable),
+small coffee cup with steam, smartphone face-down showing a single notification
+glow. Warm desk lamp light from top-right, deep amber and teal accents.
+Shallow focus on notebook. Vertical 4:5.
+```
+
+### D. Пост-рассуждение / без конкретного объекта
+Если объекта нет — снимай ATMOSFERA не символ.
+
+```
+Photoreal cinematic still: dimly lit home office at night, single laptop screen
+glowing teal in foreground (content not readable, just light), window with city
+lights bokeh in background. Mood: focused late-night work. No people in frame.
+Vertical 4:5, shallow depth of field, anamorphic feel.
+```
+
+## Палитра — выбирается под тему, не всегда navy+teal
+
+| Тема | Палитра |
+|---|---|
+| Аналитика, технари, продукт | глубокий navy + teal + warm white, акцент янтарь |
+| Премиум-товары, lifestyle | champagne gold + charcoal + soft cream |
+| AI / автоматизация / код | dark slate + electric cyan + magenta highlights |
+| Колл-центр / коммуникации | warm amber + deep brown + cream |
+| Маркетинг / реклама / креатив | sunset orange + plum + ivory |
+| Стратегические рассуждения | monochrome dark with one warm accent |
+
+Никогда не "rainbow gradient" — палитра 3 цвета максимум.
+
+## Анти-AI-stock чек-лист
+
+Промпт НЕ должен содержать:
+
+- ❌ "abstract geometric shapes" / "abstract data flow"
+- ❌ "lines connecting nodes" / "network visualization"
+- ❌ "magical glow" / "futuristic interface"
+- ❌ "X transforms into Y" (микрофон в волны, мозг в схему)
+- ❌ "holographic" / "neon cyberpunk"
+- ❌ "minimalist illustration" (просим РЕНДЕР, не иллюстрацию)
+- ❌ "soft gradient background" без детали что именно
+- ❌ Стрелки, мозги с лампочкой, рукопожатия, глобус с линиями
+- ❌ Слово "creative" / "innovative" / "modern" без конкретики
+
+Промпт ДОЛЖЕН содержать:
+
+- ✅ Конкретный главный объект ("matte black 14-inch laptop" а не "device")
+- ✅ Материалы ("brushed aluminum", "satin paper", "matte ceramic", "frosted glass")
+- ✅ Конкретное освещение ("warm key light from upper-left, cool rim from back-right")
+- ✅ Поверхность / сцена ("dark walnut desk", "brushed concrete", "white marble")
+- ✅ Глубину кадра ("shallow depth of field", "background blurred")
+- ✅ Палитру 3 цветов с конкретными значениями
+- ✅ Vertical 4:5 composition
+
+## Правило «вообрази обложку Wired»
+
+Спроси себя: «эта картинка могла бы быть на обложке Wired / Monocle / Apple
+keynote?» Если ответ «нет, это похоже на превью к статье Forbes про AI» —
+переписывай. Целишься в editorial product photography, не в иллюстративный
+сток.
+
+## Когда лучше реальный скриншот вместо генерации
+
+Если пост про конкретный интерфейс который у тебя реально работает —
+прикрепи скриншот вместо генерации. Это всегда сильнее любого 3D-рендера.
+Скрин показывает что продукт реальный. Пример: пост про шестигранник
+использует реальный скриншот UI, не сгенерённую картинку.

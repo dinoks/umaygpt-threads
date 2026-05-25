@@ -28,11 +28,24 @@ class GeminiClient:
             f"models/{self.model}:generateContent"
         )
 
-        # Добавляем "формат для Threads" чтобы пропорция была вертикальная
+        # Технический хвост: добавляется ко всем prompt'ам чтобы получить
+        # photoreal product-photography качество вместо AI-stock иллюстрации.
+        # Стилистика описана в prompts/image_style.md
         full_prompt = (
             f"{prompt}\n\n"
-            "Format: portrait orientation 4:5 aspect ratio, "
-            "high quality, suitable for social media post."
+            "Technical: photoreal 3D render, Octane / Cinema 4D quality, "
+            "cinematic lighting with rim light and soft directional shadows, "
+            "shallow depth of field, sharp focus on hero subject with blurred "
+            "background, editorial product photography aesthetic, fine surface "
+            "texture detail (brushed metal, matte ceramic, satin paper, "
+            "frosted glass where applicable), realistic material PBR shading, "
+            "high dynamic range, subtle film grain. "
+            "Composition: vertical 4:5 aspect ratio (1080x1350), single hero "
+            "subject, three-color palette maximum, no rainbow gradients. "
+            "Strictly avoid: flat illustration look, abstract geometric symbols, "
+            "lines connecting nodes, holographic effects, magical glow, generic "
+            "AI-stock aesthetic, brand logos, readable text, human figures or "
+            "body parts in frame."
         )
 
         payload = {
